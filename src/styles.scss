@@ -1,1 +1,128 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+
+
+/*
+  replace regexs: 
+  
+  <[\w]+ class="(.*)">([\w]+)</[\w]+>
+
+  da rk:(.*);?
+*/
+
+
+.input-label {
+  @appy block mb-2 text-sm font-medium text-gray-900;
+}
+
+.text-input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+}
+
+.textarea-input {
+  @apply block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500;
+}
+
+
+
+.btn {
+  @apply cursor-pointer inline-flex items-center py-2 px-4 text-sm font-medium text-center rounded border;
+}
+
+.btn-pill {
+  @apply rounded-full;
+}
+
+.btn-blue {
+  @apply btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300;
+}
+
+.btn-white {
+  @apply btn text-gray-900 bg-white border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-blue-300;
+}
+
+.btn-dark {
+  @apply btn text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300;
+}
+
+.btn-light {
+  @apply btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-blue-300;
+}
+
+.btn-green {
+  @apply btn text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300;
+}
+
+.btn-red {
+  @apply btn text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300;
+}
+
+.btn-yellow {
+  @apply btn text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300;
+}
+
+
+
+// https://tailwindcss.com/docs/border-color
+.border-gray-1 {
+  @apply border border-gray-300 rounded;
+}
+.border-top-gray-1 {
+  border-top-color: rgb(209 213 219);
+  border-top-width: 1px;
+}
+.border-bottom-gray-1 {
+  border-bottom-color: rgb(209 213 219);
+  border-bottom-width: 1px;
+}
+.border-left-gray-1 {
+  border-left-color: rgb(209 213 219);
+  border-left-width: 1px;
+}
+.border-right-gray-1 {
+  border-right-color: rgb(209 213 219);
+  border-right-width: 1px;
+}
+
+
+
+.card-box {
+  @apply block p-6 bg-white rounded-lg border border-gray-200 shadow-md;
+}
+
+// https://flowbite.com/docs/components/badge/
+.badge-default {
+  @apply bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+
+
+
+.badge-default {
+  @apply bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-dark {
+  @apply bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-red {
+  @apply bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-green {
+  @apply bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-yellow {
+  @apply bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-indigo {
+  @apply bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-purple {
+  @apply bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}
+.badge-pink {
+  @apply bg-pink-100 text-pink-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded;
+}

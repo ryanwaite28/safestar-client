@@ -1,0 +1,20 @@
+<div class="watches-item-inner">
+  <img
+    class="rounded w-12"
+    [src]="watch.icon_link || './assets/img/default-1.png'"
+  />
+  <p>
+    {{ watch.title }}
+    &nbsp; 
+    <span *ngIf="watch.unseen_messages_count && watch.unseen_messages_count > 0" class="badge-default ml-3">{{ watch.unseen_messages_count }}</span>
+    <br/>
+    <small>
+      <em class="text-grey">
+        {{ watch.last_opened | date : 'MMM d, y (h:mm a)' }}
+        <span class="block mt-3" *ngIf="watch.members_count">
+          Members: {{ watch.members_count }}
+        </span>
+      </em>
+    </small>
+  </p>
+</div>

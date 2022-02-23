@@ -1,0 +1,100 @@
+<div>
+  <div class="mb-3 card-box">
+    <p class="text-2xl mb-3 ">Pulses</p>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <div class="w-full sm:w-1/2">
+        <p class="text-xl">Create Pulse</p>
+        <p class="font-sm mb-5">Click a button to send a pulse with the designated code.</p>
+
+       <div class="mb-5">
+          <p class="font-sm mb-3">Generic/Default</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              *ngFor="let pulse_code of PULSE_CODES_GENERIC"
+              type="button"
+              class="btn-white"
+              [disabled]="pulses_loading"
+              (click)="createPulse(pulse_code)"
+            >
+              <span class="font-bold">{{ pulse_code }}</span>
+            </button>
+          </div>
+       </div>
+
+       <div class="mb-5">
+          <p class="font-sm mb-3">Okay</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              *ngFor="let pulse_code of PULSE_CODES_OKAY"
+              type="button"
+              class="btn-blue"
+              [disabled]="pulses_loading"
+              (click)="createPulse(pulse_code)"
+            >
+              <span class="font-bold">{{ pulse_code }}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <p class="font-sm mb-3">Warning</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              *ngFor="let pulse_code of PULSE_CODES_WARNING"
+              type="button"
+              class="btn-yellow"
+              [disabled]="pulses_loading"
+              (click)="createPulse(pulse_code)"
+            >
+              <span class="font-bold">{{ pulse_code }}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <p class="font-sm mb-3">Danger</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              *ngFor="let pulse_code of PULSE_CODES_DANGER"
+              type="button"
+              class="btn-red"
+              [disabled]="pulses_loading"
+              (click)="createPulse(pulse_code)"
+            >
+              <span class="font-bold">{{ pulse_code }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="w-full sm:w-1/2">
+        <p class="text-xl mb-3">Your Pulses</p>
+
+        <div class="flex flex-col gap-3">
+          <app-pulse-card
+            *ngFor="let pulse of pulses"
+            [pulse]="pulse"
+          ></app-pulse-card>
+        </div>
+
+        <div class="mt-3" *ngIf="!pulses_end_reached">
+          <button
+            (click)="getPulses()"
+            title="Load more"
+            class="btn-blue"
+            [disabled]="pulses_loading"
+          >
+            <i class="fas fa-sync mr-2"></i>
+            Load More
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="mb-3 card-box">
+    <p class="text-2xl">Photo Pulses</p>
+  </div> -->
+</div>

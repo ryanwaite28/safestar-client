@@ -1,0 +1,177 @@
+<div class="flex flex-col gap-4">
+  <!-- Info Form -->
+  <div
+    class="p-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <form class="space-y-6" [formGroup]="userInfoForm" (ngSubmit)="onSubmitUserInfoForm()">
+      <h3 class="text-xl font-medium text-gray-900 dark:text-white">Info</h3>
+
+      <!-- Email -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+        <input formControlName="email" type="email"
+          class="text-input"
+          placeholder="Enter New Email" />
+      </div>
+
+      <!-- Username -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Username</label>
+        <input formControlName="username" type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          placeholder="Enter New Username" />
+      </div>
+
+      <!-- Bio -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900">Bio</label>
+        <textarea formControlName="bio" rows="4"
+          class="textarea-input"
+          placeholder="Enter a Bio..."></textarea>
+      </div>
+
+      <!-- is public -->
+      <div class="flex items-start">
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input formControlName="is_public" type="checkbox"
+              class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+          </div>
+          <div class="ml-3 text-sm">
+            <label class="font-medium text-gray-900 dark:text-gray-300">Public (allow account to show in searches to anyone)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- allow messaging -->
+      <div class="flex items-start">
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input formControlName="allow_messaging" type="checkbox"
+              class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+          </div>
+          <div class="ml-3 text-sm">
+            <label class="font-medium text-gray-900 dark:text-gray-300">Allow others to message you</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- allow conversations -->
+      <div class="flex items-start">
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input formControlName="allow_conversations" type="checkbox"
+              class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+          </div>
+          <div class="ml-3 text-sm">
+            <label class="font-medium text-gray-900 dark:text-gray-300">Allow others to add you to groupchats</label>
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]="loading" type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <!-- Password Form -->
+  <div
+    class="p-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <form class="space-y-6" [formGroup]="userPasswordForm" (ngSubmit)="onSubmitUserPasswordForm()">
+      <h3 class="text-xl font-medium text-gray-900 dark:text-white">Password</h3>
+      
+      <!-- Current Password -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Password</label>
+        <input type="password" formControlName="currentPassword" placeholder="Enter Current Password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        />
+      </div>
+
+      <!-- New Password -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Password</label>
+        <input type="password" formControlName="password" placeholder="Enter New Password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        />
+      </div>
+
+      <!-- Confirm New Password -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Confirm New Password</label>
+        <input type="password" formControlName="confirmPassword" placeholder="Confirm New Password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        />
+      </div>
+      
+      <button [disabled]="loading" type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <!-- Phone Form -->
+  <div
+    class="p-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-5">Phone Number</h3>
+
+    <form class="space-y-6 mb-4" [formGroup]="phoneForm" (ngSubmit)="send_sms_verification()">
+      <!-- Phone -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          Phone <small *ngIf="you!.phone"> (current phone number: {{ you!.phone }})</small>
+        </label>
+        <input formControlName="phone" type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          placeholder="Enter Phone Number" />
+      </div>
+      <button
+        [disabled]="phone_is_verified || verification_requested_successfully || !phoneForm.valid"
+        type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit
+      </button>
+    </form>
+
+    <form class="space-y-6" *ngIf="verification_requested_successfully"  [formGroup]="phoneVerifyForm" (ngSubmit)="verify_sms_code()">
+      <!-- Verify -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Verification</label>
+        <input formControlName="code" type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          placeholder="Enter Verification Code" />
+      </div>
+      <button
+        [disabled]="phone_is_verified || !phoneVerifyForm.valid"
+        type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <!-- Icon Form -->
+  <div
+    class="p-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-5">Profile Icon</h3>
+
+    <form #userIconFormElm class="space-y-6 mb-4" [formGroup]="userIconForm" (ngSubmit)="onSubmitUserIconForm(userIconFormElm, iconInput)">
+      <input
+       #iconInput
+        type="file"
+        name="icon"
+        formControlName="file"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        accept="image/*"/>
+
+      <button
+        [disabled]="userIconForm.invalid || loading"
+        type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

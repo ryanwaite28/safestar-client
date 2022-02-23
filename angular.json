@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "e9e2a599-4096-4aa9-a109-0249ff4fc23d"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,9 +34,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/fontawesome/css/all.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/fontawesome/js/all.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/flowbite/dist/flowbite.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -70,6 +79,8 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+          },
           "configurations": {
             "production": {
               "browserTarget": "safestar-client:build:production"

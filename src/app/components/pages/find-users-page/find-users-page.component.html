@@ -1,0 +1,27 @@
+<div>
+  <div class="block p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      Search Users
+    </h5>
+
+    <!-- Name or Username -->
+    <div>
+      <form [formGroup]="searchUsersForm">
+        <label class="input-label">Name or Username</label>
+        <div class="mt-2">
+          <input type="text" class="text-input mb-3"
+            placeholder="Search users by name or username"
+            formControlName="name"
+          />
+        </div>
+      </form>
+    </div>
+    
+    <div class="flex flex-col gap-4">
+      <app-user-card
+        *ngFor="let user of results"
+        [user]="user">
+      </app-user-card>
+    </div>
+  </div>
+</div>

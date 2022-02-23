@@ -1,0 +1,98 @@
+<div *ngIf="!!user">
+  <div class="w-full p-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex justify-end">
+      <button id="dropdownButton" data-dropdown-toggle="dropdown"
+        class="hidden sm:inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+        type="button">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+        </svg>
+      </button>
+      <!-- Dropdown menu -->
+      <div id="dropdown"
+        class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+        <ul class="py-1" aria-labelledby="dropdownButton">
+          <li>
+            <a href="#"
+              class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+          </li>
+          <li>
+            <a href="#"
+              class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export
+              Data</a>
+          </li>
+          <li>
+            <a href="#"
+              class="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col items-center">
+      <app-user-info
+        [user]="user"
+        [imgSize]="imgSize"
+        [textSize]="textSize"
+        [showBio]="showBio"
+      ></app-user-info>
+      
+      <div class="flex mt-4 space-x-3 lg:mt-6" *ngIf="isNotYou">
+        <button
+          type="button"
+          [disabled]="loading"
+          (click)="toggleTracking()"
+          class="btn-blue"
+        >
+          {{ isTracking ? 'Stop Tracking' : trackingRequest ? 'Cancel Tracking Request' : 'Request to Track' }}
+        </button>
+
+        <button
+          type="button"
+          [disabled]="loading"
+          (click)="sendCheckpoint()"
+          class="btn-green"
+        >
+          {{ checkpointPending ? 'Checkpoint Pending' : 'Send Checkpoint' }}
+        </button>
+
+        <button
+          type="button"
+          *ngIf="user.allow_messaging"
+          [disabled]="loading"
+          (click)="messageFormIsOpen = !messageFormIsOpen"
+          class="btn-white"
+        >
+          Send Message
+        </button>
+      </div>
+
+      <div *ngIf="messageFormIsOpen" class="w-1/2 p-4 mx-auto">
+        <form class="well" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div class="uk-margin">
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+              Body ({{ messageForm.value.body.length }}/{{ MSG_MAX_LENGTH }})
+            </span>
+            <textarea
+              type="text"
+              class="textarea-input"
+              placeholder="Enter message..."
+              rows="3"
+              formControlName="body"
+            ></textarea>
+          </div>
+          <div class="mt-2">
+            <button
+              type="submit"
+              title="Message this user"
+              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              [disabled]="loading || messageForm.invalid"
+            >
+              <i class="fas fa-paper-plane"></i>
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

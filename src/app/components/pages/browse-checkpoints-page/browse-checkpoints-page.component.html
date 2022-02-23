@@ -1,0 +1,35 @@
+<div>
+  <div class="mb-3 card-box">
+    <p class="mb-3 text-2xl">Recent Checkpoints</p>
+    <div class="flex flex-col gap-3">
+      <div *ngFor="let checkpoint of recentCheckpoints">
+        <div class="border-gray-1 p-3">
+          <div class="">
+            <div class="">
+              <div class="w-full ">
+                <img
+                  class="mb-3 w-8 h-8 rounded-full shadow-lg inline-block"
+                  [src]="checkpoint.user!.icon_link || './assets/img/anon.png'"
+                />
+                {{ '' | userFullName : checkpoint.user! }} sent a checkpoint to 
+
+                <img
+                  class="mb-3 w-8 h-8 rounded-full shadow-lg inline-block"
+                  [src]="checkpoint.check_user!.icon_link || './assets/img/anon.png'"
+                />
+                {{ '' | userFullName : checkpoint.check_user! }} at: {{ checkpoint.created_at | date : 'MMM d, y (h:mm a)' }} - {{ checkpoint.created_at | timeAgo }}
+              </div>
+
+              <div class="w-full ">
+                <span *ngIf="checkpoint.date_check_responded">
+                  <br/>
+                  <small><em>{{ '' | userFullName : checkpoint.check_user! }} responded at: {{ checkpoint.date_check_responded | date : 'MMM d, y (h:mm a)' }} - {{ checkpoint.date_check_responded | timeAgo }}</em></small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

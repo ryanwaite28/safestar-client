@@ -1,0 +1,20 @@
+<div class="conversations-item-inner">
+  <img
+    class="rounded w-12"
+    [src]="conversation.icon_link || './assets/img/default-1.png'"
+  />
+  <p>
+    {{ conversation.title }}
+    &nbsp; 
+    <span *ngIf="conversation.unseen_messages_count && conversation.unseen_messages_count > 0" class="badge-default ml-3">{{ conversation.unseen_messages_count }}</span>
+    <br/>
+    <small>
+      <em class="text-grey">
+        {{ conversation.last_opened | date : 'MMM d, y (h:mm a)' }}
+        <span class="block mt-3" *ngIf="conversation.members_count">
+          Members: {{ conversation.members_count }}
+        </span>
+      </em>
+    </small>
+  </p>
+</div>

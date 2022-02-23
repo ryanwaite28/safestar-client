@@ -1,0 +1,18 @@
+<div>
+  <div class="mb-3 card-box">
+    <p class="text-2xl">Home</p>
+  </div>
+
+  <div class="mb-3 card-box" *ngIf="stats">
+    <p class="text-2xl mb-2">Stats</p>
+    <div>
+      <p>Pulses Sent: {{ stats.pulses_count }}</p>
+      <p>Checkpoints Sent: {{ stats.checkpoints_sent_count }}</p>
+      <p>CheckPoints Received: {{ stats.checkpoints_received_count }}</p>
+      <p>Users Tracking You: {{ stats.trackers_count }}</p>
+      <p>Users You're Tracking: {{ stats.trackings_count }}</p>
+    </div>
+  </div>
+
+
+</div>

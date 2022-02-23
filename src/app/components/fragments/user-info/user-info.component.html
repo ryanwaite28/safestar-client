@@ -1,0 +1,6 @@
+<div class="flex flex-col items-center">
+  <img class="mb-3 w-{{imgSize}} h-{{imgSize}} rounded-full shadow-lg" [src]="user.icon_link || './assets/img/anon.png'" [alt]="userFullName" />
+  <span class="text-sm text-gray-500 dark:text-gray-400">@{{ user.username }}</span>
+  <h3 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ userFullName }}</h3>
+  <span *ngIf="showBio" class="text-sm text-gray-500 dark:text-gray-400">{{ user.bio }}</span>
+</div>

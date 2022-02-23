@@ -1,0 +1,13 @@
+<div>
+  <div class="my-3 p-3 border-gray-1">
+    <div #mapDiv class="browse-map-div"></div>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <app-pulse-card
+      *ngFor="let pulse of recentPulses"
+      [pulse]="pulse"
+      (click)="showOnMap(pulse)"
+    ></app-pulse-card>
+  </div>
+</div>

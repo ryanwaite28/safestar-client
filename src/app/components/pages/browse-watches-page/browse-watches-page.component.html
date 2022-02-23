@@ -1,0 +1,19 @@
+<div>
+  <div class="block p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      Recently Created Watches
+    </h5>
+    
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-3 border-gray-1" *ngFor="let watch of recentWatches">
+        <app-watch-card
+          [watch]="watch"
+        ></app-watch-card>
+
+        <span class="btn-blue mt-3">
+          Request to Join
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

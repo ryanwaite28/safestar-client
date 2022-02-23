@@ -1,0 +1,61 @@
+<nav class="bg-white border-b-2 border-b-blue-600 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <a [routerLink]="['/']" class="flex">
+      <img class="w-24 h-24" [src]="'./assets/img/safe-star-logo.png'" alt="logo">
+      <!-- <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">FlowBite</span> -->
+    </a>
+
+    <div class="flex items-center md:order-2" *ngIf="!!you">
+      <button
+        (click)="onSignout()"
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
+      >
+        Log Out
+      </button>
+
+      <button type="button"
+        class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown-menu">
+        <img class="w-8 h-8 rounded-full" [src]="you.icon_link || './assets/img/anon.png'" alt="user photo">
+      </button>
+    </div>
+
+    <div class="justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+      <ng-container [ngSwitch]="!!you">
+        <ng-container *ngSwitchCase="false">
+          <a [routerLink]="['/', 'signup']">
+            <button
+              type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
+            >
+              Sign Up
+            </button>
+          </a>
+          <a [routerLink]="['/', 'signin']">
+            <button
+              type="button"
+              class="text-blue-700 bg-white border-1 border-solid border-blue-600 hover:text-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-3"
+            >
+              Sign In
+            </button>
+          </a>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="true">
+          <ul class="flex flex-col mt-4 md:flex-row md:space-x-1 md:mt-0 md:text-sm md:font-medium">
+            <li *ngFor="let link of navbarLinks">
+              <a 
+                [routerLink]="link.path"
+                class="block py-2 pr-4 pl-3 text-black rounded dark:text-white hover:text-blue-700"
+              >
+                <span>{{ link.label }}</span>
+                <span class="badge-default ml-3" *ngIf="link.unseenCount">{{ link.unseenCount }}</span>
+              </a>
+            </li>
+          </ul>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</nav>

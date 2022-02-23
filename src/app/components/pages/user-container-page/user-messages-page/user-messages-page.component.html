@@ -1,0 +1,112 @@
+<div class="card-box">
+  <div>
+    <p class="mb-3 text-2xl">Messages</p>
+  </div>
+
+  <div class="flex flex-row border-gray-1">
+    <div class="w-1/3 border-right-gray-1">
+      <div class="messagings-item transition" *ngFor="let m of messagings_list" (click)="setMessaging(m)">
+        <div class="messagings-item-inner">
+          <div class="user-icon-container-left">
+            <img
+              class="user-icon-circle"
+              [src]="(m.sender_id === you.id ? m.user.icon_link : m.sender.icon_link) || './assets/img/anon.png'"
+            />
+          </div>
+          <p>
+            {{ m.sender_id === you.id ? (m.user.firstname + ' ' + m.user.lastname) : (m.sender.firstname + ' ' + m.sender.lastname) }}
+            &nbsp; 
+            <span *ngIf="m.unread_messages_count && m.unread_messages_count > 0" class="badge-default ml-3">{{ m.unread_messages_count }}</span>
+            <br/>
+            <small class="text-grey"><em>{{ (m.created_at || m.createdAt) | date : 'MMM d, y (h:mm a)' }}</em></small>
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="w-2/3" *ngIf="currentMessagingSelected">
+      <div class="messages-item transition" *ngIf="!messages_list_end">
+        <button
+          (click)="getMessages()"
+          title="Load more"
+          class="btn-blue"
+          [disabled]="loading"
+        >
+          <i class="fas fa-sync mr-2"></i>
+          Load More
+        </button>
+      </div>
+  
+      <div class="messages-item transition" *ngFor="let m of messages_list">
+        <div class="messages-item-inner">
+          <div class="user-icon-container-{{ m.from.id === you.id ? 'right' : 'left' }}">
+            <img
+              class="user-icon-circle"
+              [src]="(m.from.icon_link) || './assets/img/anon.png'"
+            />
+          </div>
+          <div class="message-text-{{ m.from.id === you.id ? 'right' : 'left' }}">
+            <p>
+              <a [routerLink]="['/', 'users', m.from.id, 'home']">
+               {{ m.from.firstname + ' ' + m.from.lastname }}
+              </a>
+              <br/>
+              <span class="lead" [innerHTML]="m.body"></span>
+              <br/>
+              <small class="text-grey">
+                <em>{{ m.created_at | date : 'MMM d, y (h:mm a)' }}</em>
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="messages-item transition" *ngIf="userIsTyping">
+        <p class="text-grey">
+          <i class="fas fa-comment-dots"></i>
+          &nbsp;
+          <small>
+            <em>
+              {{ 
+                currentMessagingSelected.sender_id === you.id
+                  ? currentMessagingSelected.user.firstname
+                  : currentMessagingSelected.sender.firstname
+              }} is typing...
+            </em>
+          </small>
+        </p>
+      </div>
+  
+      <div class="messages-item transition">
+        <form class="" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div class="form-group">
+            <label for="">
+              <span class="label-info text-grey">
+                <small>({{ messageForm.value.body.length }}/{{ MSG_MAX_LENGTH }})</small>
+              </span>
+            </label>
+            <textarea type="text" class="textarea-input mb-3"
+              (keyup)="sendTypingSocketEvent()"
+              placeholder="Enter message..."
+              formControlName="body">
+            </textarea>
+          </div>
+          <div>
+            <button
+              type="submit"
+              title="Message this user"
+              class="btn-blue"
+              [disabled]="loading || !messageForm.value.body.trim().length"
+            >
+              <i class="fas fa-paper-plane mr-3"></i>
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <p></p>
+</div>

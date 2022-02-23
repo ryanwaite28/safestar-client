@@ -1,0 +1,14 @@
+<div>
+  <div class="block p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      Recently Joined Users
+    </h5>
+    
+    <div class="flex flex-col gap-4">
+      <app-user-card
+        *ngFor="let user of recentUsers"
+        [user]="user">
+      </app-user-card>
+    </div>
+  </div>
+</div>
